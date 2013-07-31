@@ -102,7 +102,7 @@
               <p>Just call <code>rainbow.show()</code> and <code>rainbow.hide()</code>. That's all.</p>
               <a id="btnStartSimple" class="button" href="javascript:void(0)">Show Progress</a>
               <a id="btnStopSimple" class="button" href="javascript:void(0)">Hide Progress</a>
-              <pre class="prettyprint linenums lang-javascript">
+              <pre class="prettyprint lang-javascript">
 &lt;script src=&quot;src/rainbow.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
   $('#btnStartSimple').click(function() {
@@ -117,16 +117,16 @@
             <section class="code">
               <p>Use <code>rainbow.config(opts)</code> to customize <em>rainbow.js</em>. Basically:</p>
               <ul>
-                <li><code>autoRun</code> (default: <code>true</code>): control whether rainbow.js should automatically increase progress after showing or wait for your command.</li>
-                <li><code>height</code> (default: <code>10</code>): the height of the canvas upon which rainbow.js draws itself (by invoking <code>rainbow.step()</code></li>
-                <li><code>lineColors</code>: list of mappings from position (0 to 1) to color, used to draw the progress line.</li>
-                <li><code>circleColors</code>: list of mappings from position (0 to 1) to color, used to draw the circle.</li>
+                <li><code>autoRun</code> (default: <code>true</code>): control whether <em>rainbow.js</em> should automatically increase progress after showing or wait for your command (i.e. invoking <code>rainbow.step()</code>.</li>
+                <li><code>height</code> (default: <code>10</code>): the height of the canvas upon which <em>rainbow.js</em> draws itself.</li>
+                <li><code>lineColors</code>: list of mappings from progress position (0 to 1) to color, used to draw the progress line.</li>
+                <li><code>circleColors</code>: list of mappings from progress position (0 to 1) to color, used to draw the circle.</li>
               </ul>
               <p>Note: <code>rainbow.step()</code> can take a number or string value. If string, you can use <code>+</code> or <code>-</code> to change the progress relatively to current position.</p>
               <a id="btnStartAdvanced" class="button" href="javascript:void(0)">Show Progress</a>
               <a id="btnIncreaseAdvanced" class="button" href="javascript:void(0)">Increase</a>
               <a id="btnStopAdvanced" class="button" href="javascript:void(0)">Hide Progress</a>
-              <pre class="prettyprint linenums lang-javascript">
+              <pre class="prettyprint lang-javascript">
 &lt;script src=&quot;src/rainbow.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
   $('#btnStartAdvanced').click(function() {
@@ -156,8 +156,8 @@
 &lt;/script&gt;</pre>
             </section>
 
-            <h3>Supported browsers</h3>
-            <p>Any browser that supports <a href="http://caniuse.com/canvas">HTML5 Canvas</a>.</p>
+            <h3>Browsers</h3>
+            <p><em>rainbow.js</em> works with any browser that supports <a href="http://caniuse.com/canvas">HTML5 Canvas</a>.</p>
         </section>
 
         <footer>

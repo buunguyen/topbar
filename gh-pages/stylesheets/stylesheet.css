@@ -152,20 +152,6 @@ a.button span {
   height: 23px;
 }
 
-.code a.button {
-  -moz-border-radius: 20px;
-  -webkit-border-radius: 20px;                     
-  border-radius: 20px;
-  width: 100px;
-  float: none;
-  text-align: center;
-  display: inline-block;
-  line-height: 15px;
-  font-weight: bold;
-  font-size: 13px;
-  margin: 0 0 10px 0;
-}
-
 #download-zip span {
   background: transparent url(../images/zip-icon.png) 12px 50% no-repeat;
 }
@@ -383,3 +369,28 @@ footer a:hover {
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
 @media only screen and (max-width: 479px) {}
+
+
+/* #Customization
+================================================== */
+ul, li {
+  font-weight: 300;
+}
+.code a.button {
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;                     
+  border-radius: 20px;
+  width: 100px;
+  float: none;
+  text-align: center;
+  display: inline-block;
+  line-height: 15px;
+  font-weight: bold;
+  font-size: 13px;
+  margin: 0 0 10px 0;
+}
+p em, li em {
+  text-shadow: none;
+  color: #d5000d;
+  font-style: normal;
+}
