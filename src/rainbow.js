@@ -1,3 +1,7 @@
+/*! rainbow.js 0.0.1, 2013-07-31
+ *  https://github.com/buunguyen/rainbow.js
+ *  Copyright (c) 2013 Buu Nguyen
+ *  Licensed under the Apache License, Version 2.0 */
 ;(function(window, document) {
     // https://gist.github.com/paulirish/1579671
     (function() {
