@@ -88,7 +88,7 @@
             var style = canvas.style
             style.position = 'fixed'
             style.top = style.left = 0
-            style['z-index'] = 100001
+            style.zIndex = 100001
             style.display = 'none'
             document.body.appendChild(canvas)
             addEvent(window, "resize", repaint)
