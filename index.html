@@ -20,20 +20,17 @@
           prettyPrint()
           function resetToDefaults() {
             rainbow.config({
-              autoRun       : true, 
-              lineThickness : 5,
-              circleRadius  : 5,
-              lineColors    : {
-                  '0'       : 'rgba(26,  188, 156, .5)',
-                  '.25'     : 'rgba(52,  152, 219, .5)',
-                  '.50'     : 'rgba(241, 196, 15,  .5)',
-                  '.75'     : 'rgba(230, 126, 34,  .5)',
-                  '1.0'     : 'rgba(211, 84,  0,   .5)'
+              autoRun       : true,
+              barThickness  : 3,
+              barColors     : {
+                  '0'       : 'rgba(26,  188, 156, .7)',
+                  '.25'     : 'rgba(52,  152, 219, .7)',
+                  '.50'     : 'rgba(241, 196, 15,  .7)',
+                  '.75'     : 'rgba(230, 126, 34,  .7)',
+                  '1.0'     : 'rgba(211, 84,  0,   .7)'
               },
-              circleColors  : {
-                  '0'       : 'rgba(230, 126, 34, .9)',
-                  '1.0'     : 'rgba(241, 196, 15, .9)'
-              }
+              shadowThickness : 1,
+              shadowColor     : '#bbb'
             })
           }
 
@@ -51,13 +48,14 @@
             resetToDefaults()
             rainbow.config({
               autoRun       : false, 
-              lineThickness : 10,
-              lineColors    : {
+              barThickness  : 5,
+              barColors     : {
                   '0'       : 'rgba(26,  188, 156, .5)',
                   '.3'      : 'rgba(41,  128, 185, .5)',
                   '1.0'     : 'rgba(231, 76,  60,  .5)'
               },
-              circleRadius  : 0
+              shadowThickness : 2,
+              shadowColor     : '#bbb'
             })
             rainbow.show();
             (function step() {
@@ -123,10 +121,10 @@
               <p>Use <code>rainbow.config(options)</code> to customize <em>rainbow.js</em>.</p>
               <ul>
                 <li><code>autoRun</code> (default: <code>true</code>): if <code>false</code>, call <code>rainbow.progress()</code> to run.</li>
-                <li><code>lineThickness</code> (default: <code>5</code>): the progress bar thickness. <code>0</code> to not draw.</li>
-                <li><code>lineColors</code>: list of gradient color stops used to draw the progress line.</li>
-                <li><code>circleRadius</code> (default: <code>5</code>): the leading circle radius. <code>0</code> to not draw.</li>
-                <li><code>circleColors</code>: list of gradient color stops used to draw the leading circle.</li>
+                <li><code>barThickness</code> (default: <code>3</code>): the progress bar thickness.</li>
+                <li><code>barColors</code>: list of gradient color stops used to draw the progress bar.</li>
+                <li><code>shadowThickness</code> (default: <code>1</code>): the shadow thickness.</li>
+                <li><code>shadowColor</code>: the shadow color.</li>
               </ul>
               <p>Note: <code>rainbow.progress()</code> can take a number or string value. If string, you can use <code>+</code> or <code>-</code> to change the progress relatively to current position. If no argument is specified, return the current progress (<code>0</code> to <code>1</code>).</p>
               <a id="btnStartAdvanced" class="button" href="javascript:void(0)">Show Progress</a>
@@ -137,14 +135,15 @@
   $('#btnStartAdvanced').click(function() {
     resetToDefaults()
     rainbow.config({
-      autoRun       : false, 
-      lineThickness : 10,
-      lineColors    : {
-          '0'       : 'rgba(26,  188, 156, .5)',
-          '.3'      : 'rgba(41,  128, 185, .5)',
-          '1.0'     : 'rgba(231, 76,  60,  .5)'
+      autoRun      : false, 
+      barThickness : 5,
+      barColors    : {
+        '0'        : 'rgba(26,  188, 156, .5)',
+        '.3'       : 'rgba(41,  128, 185, .5)',
+        '1.0'      : 'rgba(231, 76,  60,  .5)'
       },
-      circleRadius  : 0
+      shadowThickness : 2,
+      shadowColor     : '#bbb'
     })
     rainbow.show();
     (function step() {
