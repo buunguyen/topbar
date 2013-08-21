@@ -1,4 +1,4 @@
-/*! rainbow.js 0.0.3, 2013-08-20
+/*! rainbow.js 0.0.3, 2013-08-21
  *  https://github.com/buunguyen/rainbow.js
  *  Copyright (c) 2013 Buu Nguyen
  *  Licensed under the Apache License, Version 2.0 */
