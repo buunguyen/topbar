@@ -103,7 +103,7 @@
                     return currentProgress
                 if (typeof to === "string")
                     to = (to.indexOf('+') !== -1 || to.indexOf('-') !== -1)
-                        ? eval('currentProgress' + to)
+                        ? currentProgress + eval('0' + to)
                         : parseFloat(to)
                 currentProgress = to > 1 ? 1 : to
                 repaint()
