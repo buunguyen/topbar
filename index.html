@@ -20,19 +20,27 @@
           prettyPrint()
           function resetToDefaults() {
             rainbow.config({
-              autoRun       : true,
-              barThickness  : 3,
-              barColors     : {
-                  '0'       : 'rgba(26,  188, 156, .7)',
-                  '.25'     : 'rgba(52,  152, 219, .7)',
-                  '.50'     : 'rgba(241, 196, 15,  .7)',
-                  '.75'     : 'rgba(230, 126, 34,  .7)',
-                  '1.0'     : 'rgba(211, 84,  0,   .7)'
+              autoRun      : true,
+              barThickness : 3,
+              barColors    : {
+                '0'      : 'rgba(26,  188, 156, .9)',
+                '.25'    : 'rgba(52,  152, 219, .9)',
+                '.50'    : 'rgba(241, 196, 15,  .9)',
+                '.75'    : 'rgba(230, 126, 34,  .9)',
+                '1.0'    : 'rgba(211, 84,  0,   .9)'
               },
-              shadowThickness : 1,
-              shadowColor     : '#bbb'
+              shadowBlur   : 10,
+              shadowColor  : 'rgba(0,   0,   0,   .6)'
             })
           }
+
+          // Page load
+          resetToDefaults()
+          rainbow.show()
+          setTimeout(function() {
+            $('#main_content').fadeIn('slow')
+            rainbow.hide()
+          }, 1500)
 
           // Simple Demo
           $('#btnStartSimple').click(function() {
@@ -47,15 +55,15 @@
           $('#btnStartAdvanced').click(function() {
             resetToDefaults()
             rainbow.config({
-              autoRun       : false, 
-              barThickness  : 5,
-              barColors     : {
-                  '0'       : 'rgba(26,  188, 156, .5)',
-                  '.3'      : 'rgba(41,  128, 185, .5)',
-                  '1.0'     : 'rgba(231, 76,  60,  .5)'
+              autoRun      : false, 
+              barThickness : 5,
+              barColors    : {
+                  '0'      : 'rgba(26,  188, 156, .7)',
+                  '.3'     : 'rgba(41,  128, 185, .7)',
+                  '1.0'    : 'rgba(231, 76,  60,  .7)'
               },
-              shadowThickness : 2,
-              shadowColor     : '#bbb'
+              shadowBlur   : 5,
+              shadowColor  : 'rgba(0, 0, 0, .5)'
             })
             rainbow.show();
             (function step() {
@@ -74,99 +82,88 @@
   <body>
     <div id="container">
       <div class="inner">
-
         <header>
           <h1>Rainbow.js</h1>
-          <h2>Tiny &amp; beautiful progress indicator for JavaScript</h2>
+          <h2>Tiny &amp; beautiful progress indicator</h2>
         </header>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/buunguyen/rainbow.js/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/buunguyen/rainbow.js/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/buunguyen/rainbow.js" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
         <section id="main_content">
-            <h3>About</h3>
-            <p>I was working on a single-page application which performs tons of Ajax requests and exploring ways to indicate progress in a non-obtrusive and non-blocking manner (besides being good-looking). <em>rainbow.js</em> is the end result.</p>
-            <h3>Features</h3>
+          <section id="downloads" class="clearfix">
+            <a href="https://github.com/buunguyen/rainbow.js/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+            <a href="https://github.com/buunguyen/rainbow.js/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+            <a href="https://github.com/buunguyen/rainbow.js" id="view-on-github" class="button"><span>View on GitHub</span></a>
+          </section>
+
+          <hr>
+
+          <h3>Highlights</h3>
+          <ul>
+              <li>Tiny (1KB minified and gzipped), no dependency</li>
+              <li>Perfect for single-page/Turbolinks/pjax applications</a></li>
+              <li>Responsiveness (try resize your browser)</li>
+          </ul>
+          <h3>Usages</h3>
+          <h4>Simple</h4>
+          <section class="code">
+            <p>Just call <code>rainbow.show()</code> and <code>rainbow.hide()</code>. That's all.</p>
+            <a id="btnStartSimple" class="button" href="javascript:void(0)">Show Progress</a>
+            <a id="btnStopSimple" class="button" href="javascript:void(0)">Hide Progress</a>
+            <pre class="prettyprint lang-javascript">
+$('#btnStartSimple').click(function() {
+  rainbow.show()
+})
+
+$('#btnStopSimple').click(function() {
+  rainbow.hide()  
+})</pre>
+          </section>
+          <h4>Advanced</h4>
+          <section class="code">
+            <p>Use <code>rainbow.config(options)</code> to customize <em>rainbow.js</em>.</p>
             <ul>
-                <li>Tiny (1KB minified and gzipped)</li>
-                <li>1 single JS file, no dependency</li>
-                <li>Beautiful and non-intrusive interface</li>
-                <li>Work well with desktop and mobile browsers</li>
-                <li>Non-blocking UI (i.e. no background overlay or modal)</li>
+              <li><code>autoRun</code> (default: <code>true</code>): if <code>false</code>, call <code>rainbow.progress()</code> manually to run.</li>
+              <li><code>barThickness</code> (default: <code>3</code>): the progress bar thickness.</li>
+              <li><code>barColors</code>: list of gradient color stops used to draw the progress bar.</li>
+              <li><code>shadowBlur</code> (default: <code>10</code>): the shadow blur.</li>
+              <li><code>shadowColor</code>: the shadow color.</li>
             </ul>
-            <h3>Usages</h3>
-            <h4>Simple</h4>
-            <section class="code">
-              <p>Just call <code>rainbow.show()</code> and <code>rainbow.hide()</code>. That's all.</p>
-              <a id="btnStartSimple" class="button" href="javascript:void(0)">Show Progress</a>
-              <a id="btnStopSimple" class="button" href="javascript:void(0)">Hide Progress</a>
-              <pre class="prettyprint lang-javascript">
-&lt;script src=&quot;src/rainbow.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-  $('#btnStartSimple').click(function() {
-    rainbow.show()
+            <p>Note: <code>rainbow.progress()</code> can take a number or string value. If string, you can use <code>+</code> or <code>-</code> to change the progress relatively to current position. If no argument is specified, return the current progress (<code>0</code> to <code>1</code>).</p>
+            <a id="btnStartAdvanced" class="button" href="javascript:void(0)">Show Progress</a>
+            <a id="btnStopAdvanced" class="button" href="javascript:void(0)">Hide Progress</a>
+            <pre class="prettyprint lang-javascript">
+$('#btnStartAdvanced').click(function() {
+  rainbow.config({
+    autoRun      : false, 
+    barThickness : 5,
+    barColors    : {
+      '0'        : 'rgba(26,  188, 156, .7)',
+      '.3'       : 'rgba(41,  128, 185, .7)',
+      '1.0'      : 'rgba(231, 76,  60,  .7)'
+    },
+    shadowBlur   : 5,
+    shadowColor  : 'rgba(0, 0, 0, .5)'
   })
-  $('#btnStopSimple').click(function() {
-    rainbow.hide()  
-  })
-&lt;/script&gt;</pre>
-            </section>
-            <h4>Advanced</h4>
-            <section class="code">
-              <p>Use <code>rainbow.config(options)</code> to customize <em>rainbow.js</em>.</p>
-              <ul>
-                <li><code>autoRun</code> (default: <code>true</code>): if <code>false</code>, call <code>rainbow.progress()</code> to run.</li>
-                <li><code>barThickness</code> (default: <code>3</code>): the progress bar thickness.</li>
-                <li><code>barColors</code>: list of gradient color stops used to draw the progress bar.</li>
-                <li><code>shadowThickness</code> (default: <code>1</code>): the shadow thickness.</li>
-                <li><code>shadowColor</code>: the shadow color.</li>
-              </ul>
-              <p>Note: <code>rainbow.progress()</code> can take a number or string value. If string, you can use <code>+</code> or <code>-</code> to change the progress relatively to current position. If no argument is specified, return the current progress (<code>0</code> to <code>1</code>).</p>
-              <a id="btnStartAdvanced" class="button" href="javascript:void(0)">Show Progress</a>
-              <a id="btnStopAdvanced" class="button" href="javascript:void(0)">Hide Progress</a>
-              <pre class="prettyprint lang-javascript">
-&lt;script src=&quot;src/rainbow.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-  $('#btnStartAdvanced').click(function() {
-    resetToDefaults()
-    rainbow.config({
-      autoRun      : false, 
-      barThickness : 5,
-      barColors    : {
-        '0'        : 'rgba(26,  188, 156, .5)',
-        '.3'       : 'rgba(41,  128, 185, .5)',
-        '1.0'      : 'rgba(231, 76,  60,  .5)'
-      },
-      shadowThickness : 2,
-      shadowColor     : '#bbb'
-    })
-    rainbow.show();
-    (function step() {
-      setTimeout(function() {  
-        if (rainbow.progress('+.01') < 1) step()
-      }, 16)
-    })()
-  })
-  $('#btnStopAdvanced').click(function() {
-    rainbow.hide()  
-  })
-&lt;/script&gt;</pre>
-            </section>
+  rainbow.show();
+  (function step() {
+    setTimeout(function() {  
+      if (rainbow.progress('+.01') &lt; 1) step()
+    }, 16)
+  })()
+})
 
-            <h3>Browsers</h3>
-            <p><em>rainbow.js</em> works with any browser that supports <a href="http://caniuse.com/canvas">HTML5 Canvas</a>.</p>
-        </section>
+$('#btnStopAdvanced').click(function() {
+  rainbow.hide()  
+})</pre>
+          </section>
 
-        <footer>
-          Rainbow.js is maintained by <a href="https://github.com/buunguyen">buunguyen</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
+          <h3>Browsers</h3>
+          <p><em>rainbow.js</em> works with any browser that supports <a href="http://caniuse.com/canvas">HTML5 Canvas</a>.</p>
 
+          <footer>
+            Rainbow.js is maintained by <a href="https://github.com/buunguyen">buunguyen</a><br>
+            This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+          </footer>
+        </section> <!-- main_content-->
       </div>
     </div>
   </body>

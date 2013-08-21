@@ -373,6 +373,9 @@ footer a:hover {
 
 /* #Customization
 ================================================== */
+#main_content {
+  display: none;
+}
 ul, li {
   font-weight: 300;
 }
