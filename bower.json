@@ -1,12 +1,17 @@
 {
   "name": "rainbow.js",
-  "version": "0.0.4",
+  "main": "rainbow.js",
+  "version": "0.0.5",
   "description": "Tiny & beautiful site-wide progress indicator",
   "keywords": [
     "progress",
     "indicator",
     "loading"
   ],
-  "main": "rainbow.js",
-  "license": "MIT"
+  "license": "MIT",
+  "ignore": [
+    ".gitignore",
+    "package.json",
+    "Gruntfile.coffee"
+  ]
 }
