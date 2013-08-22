@@ -4,17 +4,17 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="gh-pages/stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="gh-pages/stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="gh-pages/stylesheets/print.css" media="print" />
-    <link rel="stylesheet" type="text/css" href="gh-pages/stylesheets/tomorrow-night-bright.css" media="all" />
-    <script src="gh-pages/javascripts/jquery-1.10.2.min.js"></script>
-    <script src="gh-pages/javascripts/prettify.min.js"></script>
-    <script src="src/rainbow.js"></script>
+    <link rel="stylesheet" type="text/css" href="_index/stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="_index/stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="_index/stylesheets/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="_index/stylesheets/tomorrow-night-bright.css" media="all" />
+    <script src="_index/javascripts/jquery-1.10.2.min.js"></script>
+    <script src="_index/javascripts/prettify.min.js"></script>
+    <script src="rainbow.js"></script>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>Rainbow.js by buunguyen</title>
+    <title>rainbow.js by buunguyen</title>
     <script>
       $(function() {
           prettyPrint()
@@ -83,7 +83,7 @@
     <div id="container">
       <div class="inner">
         <header>
-          <h1>Rainbow.js</h1>
+          <h1>rainbow.js</h1>
           <h2>Tiny &amp; beautiful site-wide progress indicator</h2>
         </header>
 
@@ -100,15 +100,23 @@
           <ul>
               <li>Tiny (1KB minified and gzipped), no dependency</li>
               <li>Perfect for single-page/Turbolinks/pjax applications</a></li>
-              <li>Responsiveness (try resize your browser)</li>
+              <li>Responsive</li>
           </ul>
           <h3>Usages</h3>
-          <h4>Simple</h4>
+          <h4>Installation</h4>
           <section class="code">
-            <p>Just call <code>rainbow.show()</code> and <code>rainbow.hide()</code>. That's all.</p>
+            <p>Download <a href="https://raw.github.com/buunguyen/rainbow.js/master/rainbow.js">rainbow.js</a> or <a href="https://raw.github.com/buunguyen/rainbow.js/master/rainbow.min.js">rainbow.min.js</a> and include it in the page.</p>
+            <pre class="prettyprint">&lt;script src=&quot;path/to/rainbow.js&quot;&gt;&lt;/script&gt;</pre>
+            <p><em>optional:</em> also available for Bower (<code>bower install rainbow.js</code>) and Browserify (<code>npm install rainbow-load</code>).
+            </p>
+          </section>
+
+          <h4>Basic</h4>
+          <section class="code">
+            <p>Call <code>rainbow.show()</code> to show and <code>rainbow.hide()</code> to hide the progress bar. Before <code>rainbow.hide()</code> is called, the progress bar will move slower and slower but never actually reach 100%. Most of the time, these 2 methods are all you need.</p>
             <a id="btnStartSimple" class="button" href="javascript:void(0)">Show Progress</a>
             <a id="btnStopSimple" class="button" href="javascript:void(0)">Hide Progress</a>
-            <pre class="prettyprint lang-javascript">
+            <pre class="prettyprint">
 $('#btnStartSimple').click(function() {
   rainbow.show()
 })
@@ -130,7 +138,7 @@ $('#btnStopSimple').click(function() {
             <p>Note: <code>rainbow.progress()</code> can take a number or string value. If string, you can use <code>+</code> or <code>-</code> to change the progress relatively to current position. If no argument is specified, return the current progress (<code>0</code> to <code>1</code>).</p>
             <a id="btnStartAdvanced" class="button" href="javascript:void(0)">Show Progress</a>
             <a id="btnStopAdvanced" class="button" href="javascript:void(0)">Hide Progress</a>
-            <pre class="prettyprint lang-javascript">
+            <pre class="prettyprint">
 $('#btnStartAdvanced').click(function() {
   rainbow.config({
     autoRun      : false, 

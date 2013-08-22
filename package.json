@@ -1,15 +1,15 @@
 {
   "name": "rainbow-load",
   "description": "Tiny & beautiful site-wide progress indicator",
-  "main": "src/rainbow.js",
+  "main": "rainbow.js",
   "homepage": "https://github.com/buunguyen/rainbow.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Buu Nguyen"
   },
   "licenses": [
     {
-      "type": "Apache License, Version 2.0"
+      "type": "MIT"
     }
   ],
   "devDependencies": {

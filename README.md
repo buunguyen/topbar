@@ -8,3 +8,5 @@ Site-wide progress indicator that is:
 * Responsive
 
 Check out [demo & usages](http://buunguyen.github.io/rainbow.js).
+
+MIT license.
