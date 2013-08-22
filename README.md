@@ -9,4 +9,4 @@ Site-wide progress indicator that is:
 
 Check out [demo & usages](http://buunguyen.github.io/rainbow.js).
 
-MIT license.
+MIT license. Copyright 2013 Buu Nguyen.
