@@ -1,0 +1,5 @@
+{
+  "name": "myProject",
+  "main": "src/rainbow.js",
+  "version": "0.0.3",
+}
