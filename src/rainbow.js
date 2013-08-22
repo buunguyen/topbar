@@ -130,7 +130,12 @@
             }
         }
 
-    if (typeof define === 'function' && define.amd)
+    if (typeof module !== 'undefined') {
+        module.exports = rainbow;
+    } else if (typeof define === 'function' && define.amd) {
         define(function() { return rainbow })
-    else this.rainbow = rainbow
+    } else {
+        this.rainbow = rainbow
+    }
+
 }).call(this, window, document)
