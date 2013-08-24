@@ -117,7 +117,7 @@
                 (function loop() {
                     if (rainbow.progress('+.1') >= 1) {
                         canvas.style.opacity -= .05
-                        if (canvas.style.opacity <= 0) {
+                        if (canvas.style.opacity <= .05) {
                             canvas.style.display = 'none'
                             fadeTimerId = null
                             return
