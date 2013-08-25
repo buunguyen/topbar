@@ -3,8 +3,10 @@
  *  Copyright (c) 2013 Buu Nguyen
  *  Licensed under the MIT */
 ;(function(window, document) {
+    'use strict'
+    
     // https://gist.github.com/paulirish/1579671
-    (function() {
+    ;(function() {
         var lastTime = 0;
         var vendors = ['ms', 'moz', 'webkit', 'o'];
         for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
@@ -99,10 +101,9 @@
             progress: function(to) {
                 if (typeof to === "undefined")
                     return currentProgress
-                if (typeof to === "string")
-                    to = (to.indexOf('+') !== -1 || to.indexOf('-') !== -1)
-                        ? currentProgress + eval('0' + to)
-                        : parseFloat(to)
+                if (typeof to === "string") {
+                    to = (to.indexOf('+') >= 0 || to.indexOf('-') >= 0 ? currentProgress : 0) + parseFloat(to)
+                }
                 currentProgress = to > 1 ? 1 : to
                 repaint()
                 return currentProgress
