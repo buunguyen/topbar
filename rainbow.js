@@ -1,4 +1,4 @@
-/*! rainbow-load 0.0.5, 2013-08-22
+/*! rainbow-load 0.0.6, 2013-08-22
  *  https://github.com/buunguyen/rainbow.js
  *  Copyright (c) 2013 Buu Nguyen
  *  Licensed under the MIT */
