@@ -10,3 +10,6 @@ Site-wide progress indicator that is:
 Check out [demo & usages](http://buunguyen.github.io/rainbow.js).
 
 MIT license. Copyright 2013 Buu Nguyen.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/buunguyen/rainbow.js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
