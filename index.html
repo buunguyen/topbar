@@ -10,16 +10,16 @@
     <link rel="stylesheet" type="text/css" href="index/stylesheets/tomorrow-night-bright.css" media="all" />
     <script src="index/javascripts/jquery-1.10.2.min.js"></script>
     <script src="index/javascripts/prettify.min.js"></script>
-    <script src="rainbow.js"></script>
+    <script src="topbar.js"></script>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>rainbow.js by buunguyen</title>
+    <title>topbar by buunguyen</title>
     <script>
       $(function() {
           prettyPrint()
           function resetToDefaults() {
-            rainbow.config({
+            topbar.config({
               autoRun      : true,
               barThickness : 3,
               barColors    : {
@@ -36,25 +36,25 @@
 
           // Page load
           resetToDefaults()
-          rainbow.show()
+          topbar.show()
           setTimeout(function() {
             $('#main_content').fadeIn('slow')
-            rainbow.hide()
+            topbar.hide()
           }, 1500)
 
           // Simple Demo
           $('#btnStartSimple').click(function() {
             resetToDefaults()
-            rainbow.show()
+            topbar.show()
           })
           $('#btnStopSimple').click(function() {
-            rainbow.hide()  
+            topbar.hide()  
           })
 
           // Advanced Demo
           $('#btnStartAdvanced').click(function() {
             resetToDefaults()
-            rainbow.config({
+            topbar.config({
               autoRun      : false, 
               barThickness : 5,
               barColors    : {
@@ -65,15 +65,15 @@
               shadowBlur   : 5,
               shadowColor  : 'rgba(0, 0, 0, .5)'
             })
-            rainbow.show();
+            topbar.show();
             (function step() {
               setTimeout(function() {  
-                if (rainbow.progress('+.01') < 1) step()
+                if (topbar.progress('+.01') < 1) step()
               }, 16)
             })()
           })
           $('#btnStopAdvanced').click(function() {
-            rainbow.hide()  
+            topbar.hide()  
           })
       })
     </script>
@@ -83,15 +83,15 @@
     <div id="container">
       <div class="inner">
         <header>
-          <h1>rainbow.js</h1>
+          <h1>topbar</h1>
           <h2>Tiny &amp; beautiful site-wide progress indicator</h2>
         </header>
 
         <section id="main_content">
           <section id="downloads" class="clearfix">
-            <a href="https://github.com/buunguyen/rainbow.js/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-            <a href="https://github.com/buunguyen/rainbow.js/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-            <a href="https://github.com/buunguyen/rainbow.js" id="view-on-github" class="button"><span>View on GitHub</span></a>
+            <a href="https://github.com/buunguyen/topbar.js/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+            <a href="https://github.com/buunguyen/topbar.js/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+            <a href="https://github.com/buunguyen/topbar.js" id="view-on-github" class="button"><span>View on GitHub</span></a>
           </section>
 
           <hr>
@@ -105,42 +105,42 @@
           <h3>Usages</h3>
           <h4>Installation</h4>
           <section class="code">
-            <p>Download <a href="https://raw.github.com/buunguyen/rainbow.js/master/rainbow.js">rainbow.js</a> or <a href="https://raw.github.com/buunguyen/rainbow.js/master/rainbow.min.js">rainbow.min.js</a> and include it in the page.</p>
-            <pre class="prettyprint">&lt;script src=&quot;path/to/rainbow.js&quot;&gt;&lt;/script&gt;</pre>
-            <p><em>optional:</em> also available for Bower (<code>bower install rainbow.js</code>) and Browserify (<code>npm install rainbow-load</code>).
+            <p>Download <a href="https://raw.github.com/buunguyen/topbar.js/master/topbar.js">topbar.js</a> or <a href="https://raw.github.com/buunguyen/topbar.js/master/topbar.min.js">topbar.min.js</a> and include it in the page.</p>
+            <pre class="prettyprint">&lt;script src=&quot;path/to/topbar.js&quot;&gt;&lt;/script&gt;</pre>
+            <p><em>optional:</em> also available for Bower (<code>bower install topbar</code>) and Browserify (<code>npm install topbar</code>).
             </p>
           </section>
 
           <h4>Basic</h4>
           <section class="code">
-            <p>Call <code>rainbow.show()</code> to show and <code>rainbow.hide()</code> to hide the progress bar. Before <code>rainbow.hide()</code> is called, the progress bar will move slower and slower but never actually reach 100%. Most of the time, these 2 methods are all you need.</p>
+            <p>Call <code>topbar.show()</code> to show and <code>topbar.hide()</code> to hide the progress bar. Before <code>topbar.hide()</code> is called, the progress bar will move slower and slower but never actually reach 100%. Most of the time, these 2 methods are all you need.</p>
             <a id="btnStartSimple" class="button" href="javascript:void(0)">Show Progress</a>
             <a id="btnStopSimple" class="button" href="javascript:void(0)">Hide Progress</a>
             <pre class="prettyprint">
 $('#btnStartSimple').click(function() {
-  rainbow.show()
+  topbar.show()
 })
 
 $('#btnStopSimple').click(function() {
-  rainbow.hide()  
+  topbar.hide()  
 })</pre>
           </section>
           <h4>Advanced</h4>
           <section class="code">
-            <p>Use <code>rainbow.config(options)</code> to customize <em>rainbow.js</em>.</p>
+            <p>Use <code>topbar.config(options)</code> to customize <em>topbar</em>.</p>
             <ul>
-              <li><code>autoRun</code> (default: <code>true</code>): if <code>false</code>, call <code>rainbow.progress()</code> manually to run.</li>
+              <li><code>autoRun</code> (default: <code>true</code>): if <code>false</code>, call <code>topbar.progress()</code> manually to run.</li>
               <li><code>barThickness</code> (default: <code>3</code>): the progress bar thickness.</li>
               <li><code>barColors</code>: list of gradient color stops used to draw the progress bar.</li>
               <li><code>shadowBlur</code> (default: <code>10</code>): the shadow blur.</li>
               <li><code>shadowColor</code>: the shadow color.</li>
             </ul>
-            <p>Note: <code>rainbow.progress()</code> can take a number or string value. If string, you can use <code>+</code> or <code>-</code> to change the progress relatively to current position. If no argument is specified, return the current progress (<code>0</code> to <code>1</code>).</p>
+            <p>Note: <code>topbar.progress()</code> can take a number or string value. If string, you can use <code>+</code> or <code>-</code> to change the progress relatively to current position. If no argument is specified, return the current progress (<code>0</code> to <code>1</code>).</p>
             <a id="btnStartAdvanced" class="button" href="javascript:void(0)">Show Progress</a>
             <a id="btnStopAdvanced" class="button" href="javascript:void(0)">Hide Progress</a>
             <pre class="prettyprint">
 $('#btnStartAdvanced').click(function() {
-  rainbow.config({
+  topbar.config({
     autoRun      : false, 
     barThickness : 5,
     barColors    : {
@@ -151,24 +151,24 @@ $('#btnStartAdvanced').click(function() {
     shadowBlur   : 5,
     shadowColor  : 'rgba(0, 0, 0, .5)'
   })
-  rainbow.show();
+  topbar.show();
   (function step() {
     setTimeout(function() {  
-      if (rainbow.progress('+.01') &lt; 1) step()
+      if (topbar.progress('+.01') &lt; 1) step()
     }, 16)
   })()
 })
 
 $('#btnStopAdvanced').click(function() {
-  rainbow.hide()  
+  topbar.hide()  
 })</pre>
           </section>
 
           <h3>Browsers</h3>
-          <p><em>rainbow.js</em> works with any browser that supports <a href="http://caniuse.com/canvas">HTML5 Canvas</a>.</p>
+          <p><em>topbar</em> works with any browser that supports <a href="http://caniuse.com/canvas">HTML5 Canvas</a>.</p>
 
           <footer>
-            Rainbow.js is maintained by <a href="https://github.com/buunguyen">buunguyen</a><br>
+            topbar is maintained by <a href="https://github.com/buunguyen">buunguyen</a><br>
             This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
           </footer>
         </section> <!-- main_content-->

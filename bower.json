@@ -1,14 +1,25 @@
 {
-  "name": "rainbow.js",
-  "main": "rainbow.js",
-  "version": "0.0.6",
+  "name": "topbar",
+  "main": "topbar",
+  "version": "0.1.0",
   "description": "Tiny & beautiful site-wide progress indicator",
+  "homepage": "http://buunguyen.github.io/topbar",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:buunguyen/topbar.git"
+  },
   "keywords": [
     "progress",
     "indicator",
+    "loading",
+    "responsive",
     "loading"
   ],
   "license": "MIT",
+  "authors": [{
+    "name": "Buu Nguyen"
+    "email" "buunguyen@gmail.com"
+  }],  
   "ignore": [
     ".gitignore",
     "package.json",

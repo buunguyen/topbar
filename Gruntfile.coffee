@@ -9,5 +9,5 @@ module.exports = (grunt) ->
                     ' *  Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
                     ' *  Licensed under the <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n'
       build:
-        files: "rainbow.min.js": ["rainbow.js"]
+        files: "topbar.min.js": ["topbar.js"]
   grunt.registerTask "default", "uglify"

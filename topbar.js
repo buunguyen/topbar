@@ -1,7 +1,7 @@
-/*! rainbow.js 0.0.6, 2013-10-11
- *  https://github.com/buunguyen/rainbow.js
- *  Copyright (c) 2013 Buu Nguyen
- *  Licensed under the MIT */
+/*! topbar 0.1.0, 2014-03-07
+ *  http://buunguyen.github.io/topbar
+ *  Copyright (c) 2014 Buu Nguyen
+ *  Licensed under the  */
 ;(function(window, document) {
     'use strict'
     
@@ -76,7 +76,7 @@
             document.body.appendChild(canvas)
             addEvent(window, 'resize', repaint)
         },
-        rainbow = {
+        topbar = {
             config: function(opts) {
                 for (var key in opts)
                     if (options.hasOwnProperty(key))
@@ -90,11 +90,11 @@
                 if (!canvas) createCanvas()
                 canvas.style.opacity = 1
                 canvas.style.display = 'block'
-                rainbow.progress(0)
+                topbar.progress(0)
                 if (options.autoRun) {
                     (function loop() {
                         progressTimerId = window.requestAnimationFrame(loop)
-                        rainbow.progress('+' + (.05 * Math.pow(1-Math.sqrt(currentProgress), 2)))
+                        topbar.progress('+' + (.05 * Math.pow(1-Math.sqrt(currentProgress), 2)))
                     })()
                 }
             },
@@ -116,7 +116,7 @@
                     progressTimerId = null
                 }
                 (function loop() {
-                    if (rainbow.progress('+.1') >= 1) {
+                    if (topbar.progress('+.1') >= 1) {
                         canvas.style.opacity -= .05
                         if (canvas.style.opacity <= .05) {
                             canvas.style.display = 'none'
@@ -130,10 +130,10 @@
         }
 
     if (typeof module === 'object' && typeof module.exports === 'object') {
-        module.exports = rainbow
+        module.exports = topbar
     } else if (typeof define === 'function' && define.amd) {
-        define(function() { return rainbow })
+        define(function() { return topbar })
     } else {
-        this.rainbow = rainbow
+        this.topbar = topbar
     }
 }).call(this, window, document)
