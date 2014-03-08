@@ -1,4 +1,4 @@
-/*! topbar 0.1.0, 2014-03-07
+/*! topbar 0.1.1, 2014-03-07
  *  http://buunguyen.github.io/topbar
  *  Copyright (c) 2014 Buu Nguyen
  *  Licensed under the  */
