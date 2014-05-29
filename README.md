@@ -1,4 +1,4 @@
-topbar
+topbar [![spm package](http://spmjs.io/badge/topbar)](http://spmjs.io/package/topbar)
 ====
 
 Site-wide progress indicator that is:  
