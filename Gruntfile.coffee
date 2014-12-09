@@ -7,7 +7,7 @@ module.exports = (grunt) ->
         banner: '/*! <%= pkg.title || pkg.name %> <%= pkg.version %>, <%= grunt.template.today("yyyy-mm-dd") %>\n' +
                     '<%= pkg.homepage ? " *  " + pkg.homepage + "\\n" : "" %>' +
                     ' *  Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>\n' +
-                    ' *  Licensed under the <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n'
+                    ' *  Licensed under the <%= pkg.license %> License */\n'
       build:
         files: "topbar.min.js": ["topbar.js"]
   grunt.registerTask "default", "uglify"

@@ -1,7 +1,7 @@
-/*! topbar 0.1.1, 2014-03-07
+/*! topbar 0.1.3, 2014-12-09
  *  http://buunguyen.github.io/topbar
  *  Copyright (c) 2014 Buu Nguyen
- *  Licensed under the  */
+ *  Licensed under the MIT License */
 ;(function(window, document) {
     'use strict'
     
