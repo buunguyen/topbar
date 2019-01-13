@@ -1,7 +1,7 @@
 {
   "name": "topbar",
   "main": "topbar.min.js",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Tiny & beautiful site-wide progress indicator",
   "homepage": "http://buunguyen.github.io/topbar",
   "repository": {

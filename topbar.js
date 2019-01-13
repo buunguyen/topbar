@@ -1,6 +1,6 @@
-/*! topbar 0.1.3, 2014-12-09
+/*! topbar 0.1.4, 2019-01-13
  *  http://buunguyen.github.io/topbar
- *  Copyright (c) 2014 Buu Nguyen
+ *  Copyright (c) 2019 Buu Nguyen
  *  Licensed under the MIT License */
 ;(function(window, document) {
     'use strict'
@@ -46,7 +46,8 @@
                 '1.0'    : 'rgba(211, 84,  0,   .9)'
             },
             shadowBlur   : 10,
-            shadowColor  : 'rgba(0,   0,   0,   .6)'
+            shadowColor  : 'rgba(0,   0,   0,   .6)',
+            className    : null,
         },
         repaint = function() {
             canvas.width = window.innerWidth
@@ -73,6 +74,8 @@
             style.top = style.left = style.right = style.margin = style.padding = 0
             style.zIndex = 100001
             style.display = 'none'
+            if (options.className)
+                canvas.classList.add(options.className)
             document.body.appendChild(canvas)
             addEvent(window, 'resize', repaint)
         },
