@@ -11,4 +11,4 @@ Site-wide progress indicator that is:
 
 Check out [demo & usages](http://buunguyen.github.io/topbar).
 
-MIT license. Copyright 2014 Buu Nguyen.
+MIT license. Copyright 2019 Buu Nguyen.
