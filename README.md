@@ -1,3 +1,5 @@
+[![Code Shelter](https://www.codeshelter.co/static/badges/badge-flat.svg)](https://www.codeshelter.co/)
+
 topbar
 ====
 
