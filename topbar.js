@@ -1,10 +1,10 @@
-/*! topbar 0.1.4, 2019-01-13
+/*! topbar 0.1.4, 2020-04-27
  *  http://buunguyen.github.io/topbar
  *  Copyright (c) 2019 Buu Nguyen
  *  Licensed under the MIT License */
 ;(function(window, document) {
     'use strict'
-    
+
     // https://gist.github.com/paulirish/1579671
     ;(function() {
         var lastTime = 0;
@@ -89,7 +89,7 @@
                 if (showing) return
                 showing = true
                 if (fadeTimerId !== null)
-                    window.cancelAnimationFrame(fadeTimerId) 
+                    window.cancelAnimationFrame(fadeTimerId)
                 if (!canvas) createCanvas()
                 canvas.style.opacity = 1
                 canvas.style.display = 'block'
@@ -125,7 +125,7 @@
                             canvas.style.display = 'none'
                             fadeTimerId = null
                             return
-                        } 
+                        }
                     }
                     fadeTimerId = window.requestAnimationFrame(loop)
                 })()
