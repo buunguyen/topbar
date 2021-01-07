@@ -1,12 +1,19 @@
 {
   "name": "topbar",
-  "main": "topbar.js",
-  "version": "0.1.4",
+  "main": "topbar.min.js",
+  "files": [
+    "topbar.js",
+    "topbar.min.js"
+  ],
+  "version": "1.0.1",
   "description": "Tiny & beautiful site-wide progress indicator",
   "homepage": "http://buunguyen.github.io/topbar",
   "repository": {
     "type": "git",
     "url": "git@github.com:buunguyen/topbar.git"
+  },
+  "scripts": {
+    "build": "uglifyjs --comments -c -o topbar.min.js topbar.js"
   },
   "keywords": [
     "progress",
@@ -17,11 +24,9 @@
   ],
   "license": "MIT",
   "author": {
-    "name": "Buu Nguyen",
-    "email": "buunguyen@gmail.com"
-  },  
+    "name": "Buu Nguyen"
+  },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.2"
+    "uglify-js": "~3.12.4"
   }
 }
