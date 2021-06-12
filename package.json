@@ -3,7 +3,8 @@
   "main": "topbar.min.js",
   "files": [
     "topbar.js",
-    "topbar.min.js"
+    "topbar.min.js",
+    "*.d.ts"
   ],
   "version": "1.0.1",
   "description": "Tiny & beautiful site-wide progress indicator",
