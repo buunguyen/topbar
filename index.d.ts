@@ -13,7 +13,7 @@ export interface TopbarConfigOptions {
 
 export interface Topbar {
   config: (options: TopbarConfigOptions) => void
-  show: () => void
+  show: (delay?: number) => void
   progress: (to?: number | string) => number
   hide: () => void
 }

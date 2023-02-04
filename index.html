@@ -55,7 +55,7 @@
           // Delayed Demo
           $('#btnStartDelayed').click(function() {
             resetToDefaults()
-            topbar.delayedShow(500)
+            topbar.show(500)
           })
           $('#btnStopDelayed').click(function() {
             topbar.hide()
@@ -137,12 +137,12 @@ $('#btnStopSimple').click(function() {
           </section>
           <h4>Delayed show</h4>
           <section class="code">
-            <p>You can use <code>topbar.delayedShow(microseconds)</code> to delay the progress bar. If the topbar is hidden within the time in microseconds, it does not show up at all. This can make the user experience feel smoother:</p>
+            <p>You can use <code>topbar.show(delayMillis)</code> to delay the progress bar. If hide() is invoked within the delay period, topbar won't show up at all. This can make the user experience feel smoother in some cases.</p>
             <a id="btnStartDelayed" class="button" href="javascript:void(0)">Show Progress</a>
             <a id="btnStopDelayed" class="button" href="javascript:void(0)">Hide Progress</a>
             <pre class="prettyprint">
 $('#btnStartDelayed').click(function() {
-  topbar.delayedShow(500)
+  topbar.show(500)
 })
 
 $('#btnStopDelayed').click(function() {
