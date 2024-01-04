@@ -1,8 +1,8 @@
 /**
  * @license MIT
- * topbar 2.0.1
+ * topbar 2.0.2
  * http://buunguyen.github.io/topbar
- * Copyright (c) 2023 Buu Nguyen
+ * Copyright (c) 2024 Buu Nguyen
  */
 (function (window, document) {
   "use strict";
