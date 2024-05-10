@@ -1,6 +1,6 @@
 /**
  * @license MIT
- * topbar 2.0.2
+ * topbar 3.0.0
  * http://buunguyen.github.io/topbar
  * Copyright (c) 2024 Buu Nguyen
  */
@@ -61,7 +61,6 @@
       style.zIndex = 100001;
       style.display = "none";
       if (options.className) canvas.classList.add(options.className);
-      document.body.appendChild(canvas);
       addEvent(window, "resize", repaint);
     },
     topbar = {
