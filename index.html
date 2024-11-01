@@ -65,7 +65,7 @@
           $('#btnStartAdvanced').click(function() {
             resetToDefaults()
             topbar.config({
-              autoRun      : false, 
+              autoRun      : false,
               barThickness : 5,
               barColors    : {
                   '0'      : 'rgba(26,  188, 156, .7)',
@@ -77,13 +77,13 @@
             })
             topbar.show();
             (function step() {
-              setTimeout(function() {  
+              setTimeout(function() {
                 if (topbar.progress('+.01') < 1) step()
               }, 16)
             })()
           })
           $('#btnStopAdvanced').click(function() {
-            topbar.hide()  
+            topbar.hide()
           })
       })
     </script>
@@ -159,6 +159,7 @@ $('#btnStopDelayed').click(function() {
               <li><code>shadowBlur</code> (default: <code>10</code>): the shadow blur.</li>
               <li><code>shadowColor</code>: the shadow color.</li>
               <li><code>className</code>: the CSS class name for the progress bar.</li>
+              <li><code>container</code>: the HTMLElement that works as container for the top bar. If not defined <code>document.body</code> is the container.</li>
             </ul>
             <p>Note: <code>topbar.progress()</code> can take a number or string value. If string, you can use <code>+</code> or <code>-</code> to change the progress relatively to current position. If no argument is specified, return the current progress (<code>0</code> to <code>1</code>).</p>
             <a id="btnStartAdvanced" class="button" href="javascript:void(0)">Show Progress</a>
@@ -166,7 +167,7 @@ $('#btnStopDelayed').click(function() {
             <pre class="prettyprint">
 $('#btnStartAdvanced').click(function() {
   topbar.config({
-    autoRun      : false, 
+    autoRun      : false,
     barThickness : 5,
     barColors    : {
       '0'        : 'rgba(26,  188, 156, .7)',
@@ -179,7 +180,7 @@ $('#btnStartAdvanced').click(function() {
   })
   topbar.show();
   (function step() {
-    setTimeout(function() {  
+    setTimeout(function() {
       if (topbar.progress('+.01') &lt; 1) step()
     }, 16)
   })()
