@@ -59,7 +59,7 @@
       style.position = "fixed";
       style.top = style.left = style.right = style.margin = style.padding = 0;
       style.zIndex = 100001;
-      style.display = "none";
+      canvas.hidden = true;
       if (options.className) canvas.classList.add(options.className);
       addEvent(window, "resize", repaint);
     },
@@ -79,7 +79,7 @@
           if (!canvas) createCanvas();
           if (!canvas.parentElement) document.body.appendChild(canvas);
           canvas.style.opacity = 1;
-          canvas.style.display = "block";
+          canvas.hidden = false;
           topbar.progress(0);
           if (options.autoRun) {
             (function loop() {
@@ -116,7 +116,7 @@
           if (topbar.progress("+.1") >= 1) {
             canvas.style.opacity -= 0.05;
             if (canvas.style.opacity <= 0.05) {
-              canvas.style.display = "none";
+              canvas.hidden = true;
               fadeTimerId = null;
               return;
             }
