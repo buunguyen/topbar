@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="index/stylesheets/tomorrow-night-bright.css" media="all" />
     <script src="index/javascripts/jquery-3.5.1.min.js"></script>
     <script src="index/javascripts/prettify.min.js"></script>
-    <script src="topbar.min.js"></script>
+    <script src="topbar.js"></script>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -20,7 +20,7 @@
           prettyPrint()
           function resetToDefaults() {
             topbar.config({
-              autoRun      : true,
+              autoRun      : 'stagger',
               barThickness : 3,
               barColors    : {
                 '0'      : 'rgba(26,  188, 156, .9)',
@@ -65,7 +65,7 @@
           $('#btnStartAdvanced').click(function() {
             resetToDefaults()
             topbar.config({
-              autoRun      : false, 
+              autoRun      : null, 
               barThickness : 5,
               barColors    : {
                   '0'      : 'rgba(26,  188, 156, .7)',
@@ -84,6 +84,19 @@
           })
           $('#btnStopAdvanced').click(function() {
             topbar.hide()  
+          })
+
+          // Indefinite Demo
+          $('#btnStartIndefinite').click(function() {
+            resetToDefaults()
+            topbar.config({
+              autoRun: 'indefinite',
+              barThickness: 4
+            })
+            topbar.show()
+          })
+          $('#btnStopIndefinite').click(function() {
+            topbar.hide()
           })
       })
     </script>
@@ -153,7 +166,13 @@ $('#btnStopDelayed').click(function() {
           <section class="code">
             <p>Use <code>topbar.config(options)</code> to customize <em>topbar</em>.</p>
             <ul>
-              <li><code>autoRun</code> (default: <code>true</code>): if <code>false</code>, call <code>topbar.progress()</code> manually to run.</li>
+              <li><code>autoRun</code> (default: <code>null</code>): 
+                <ul>
+                  <li><code>null</code>: no automatic progress (manual control only)</li>
+                  <li><code>'stagger'</code>: automatic progress that slows down over time (original behavior)</li>
+                  <li><code>'indefinite'</code>: full bar with moving highlight animation for unknown completion time (indeterminate progress)</li>
+                </ul>
+              </li>
               <li><code>barThickness</code> (default: <code>3</code>): the progress bar thickness.</li>
               <li><code>barColors</code>: list of gradient color stops used to draw the progress bar.</li>
               <li><code>shadowBlur</code> (default: <code>10</code>): the shadow blur.</li>
@@ -166,7 +185,7 @@ $('#btnStopDelayed').click(function() {
             <pre class="prettyprint">
 $('#btnStartAdvanced').click(function() {
   topbar.config({
-    autoRun      : false, 
+    autoRun      : null, 
     barThickness : 5,
     barColors    : {
       '0'        : 'rgba(26,  188, 156, .7)',
@@ -186,6 +205,25 @@ $('#btnStartAdvanced').click(function() {
 })
 
 $('#btnStopAdvanced').click(function() {
+  topbar.hide()
+})</pre>
+          </section>
+
+          <h4>Indefinite Mode</h4>
+          <section class="code">
+            <p>Use <code>autoRun: 'indefinite'</code> for tasks with unknown completion time. This shows a full progress bar with a moving highlight animation, perfect for indeterminate progress indicators.</p>
+            <a id="btnStartIndefinite" class="button" href="javascript:void(0)">Show Indefinite Progress</a>
+            <a id="btnStopIndefinite" class="button" href="javascript:void(0)">Hide Progress</a>
+            <pre class="prettyprint">
+$('#btnStartIndefinite').click(function() {
+  topbar.config({
+    autoRun: 'indefinite',
+    barThickness: 4
+  })
+  topbar.show()
+})
+
+$('#btnStopIndefinite').click(function() {
   topbar.hide()
 })</pre>
           </section>

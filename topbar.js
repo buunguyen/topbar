@@ -1,8 +1,8 @@
 /**
  * @license MIT
- * topbar 3.0.0
+ * topbar 3.1.0
  * http://buunguyen.github.io/topbar
- * Copyright (c) 2024 Buu Nguyen
+ * Copyright (c) 2025 Buu Nguyen
  */
 (function (window, document) {
   "use strict";
@@ -13,13 +13,15 @@
     progressTimerId = null,
     fadeTimerId = null,
     delayTimerId = null,
+    indefiniteTimerId = null,
+    indefiniteOffset = 0,
     addEvent = function (elem, type, handler) {
       if (elem.addEventListener) elem.addEventListener(type, handler, false);
       else if (elem.attachEvent) elem.attachEvent("on" + type, handler);
       else elem["on" + type] = handler;
     },
     options = {
-      autoRun: true,
+      autoRun: null,
       barThickness: 3,
       barColors: {
         0: "rgba(26,  188, 156, .9)",
@@ -53,6 +55,48 @@
       ctx.strokeStyle = lineGradient;
       ctx.stroke();
     },
+    repaintIndefinite = function () {
+      canvas.width = window.innerWidth;
+      canvas.height = options.barThickness * 5; // need space for shadow
+
+      var ctx = canvas.getContext("2d");
+      ctx.shadowBlur = options.shadowBlur;
+      ctx.shadowColor = options.shadowColor;
+
+      // First draw the full-width bar with a base gradient
+      var baseGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+      for (var stop in options.barColors)
+        baseGradient.addColorStop(stop, options.barColors[stop]);
+      
+      ctx.lineWidth = options.barThickness;
+      ctx.beginPath();
+      ctx.moveTo(0, options.barThickness / 2);
+      ctx.lineTo(canvas.width, options.barThickness / 2);
+      ctx.strokeStyle = baseGradient;
+      ctx.stroke();
+      
+      // Then overlay a moving highlight gradient
+      var highlightWidth = canvas.width * 0.3;
+      var movingGradient = ctx.createLinearGradient(
+        indefiniteOffset - highlightWidth, 
+        0, 
+        indefiniteOffset + highlightWidth, 
+        0
+      );
+      
+      // Create a bright moving highlight
+      movingGradient.addColorStop(0, "rgba(255, 255, 255, 0)");
+      movingGradient.addColorStop(0.3, "rgba(255, 255, 255, 0.4)");
+      movingGradient.addColorStop(0.5, "rgba(255, 255, 255, 0.6)");
+      movingGradient.addColorStop(0.7, "rgba(255, 255, 255, 0.4)");
+      movingGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+      
+      ctx.beginPath();
+      ctx.moveTo(0, options.barThickness / 2);
+      ctx.lineTo(canvas.width, options.barThickness / 2);
+      ctx.strokeStyle = movingGradient;
+      ctx.stroke();
+    },
     createCanvas = function () {
       canvas = document.createElement("canvas");
       var style = canvas.style;
@@ -81,12 +125,26 @@
           canvas.style.opacity = 1;
           canvas.hidden = false;
           topbar.progress(0);
-          if (options.autoRun) {
+          
+          if (options.autoRun === 'stagger') {
+            // Stagger mode: progress that slows down and never reaches full width
             (function loop() {
               progressTimerId = window.requestAnimationFrame(loop);
               topbar.progress(
                 "+" + 0.05 * Math.pow(1 - Math.sqrt(currentProgress), 2)
               );
+            })();
+          } else if (options.autoRun === 'indefinite') {
+            // Indefinite mode: full bar with moving gradient
+            currentProgress = 1; // Set to full width
+            indefiniteOffset = 0;
+            (function loop() {
+              indefiniteTimerId = window.requestAnimationFrame(loop);
+              indefiniteOffset += 4; // Speed of highlight movement
+              if (indefiniteOffset > canvas.width + canvas.width * 0.3) {
+                indefiniteOffset = -canvas.width * 0.3;
+              }
+              repaintIndefinite();
             })();
           }
         }
@@ -111,6 +169,10 @@
         if (progressTimerId != null) {
           window.cancelAnimationFrame(progressTimerId);
           progressTimerId = null;
+        }
+        if (indefiniteTimerId != null) {
+          window.cancelAnimationFrame(indefiniteTimerId);
+          indefiniteTimerId = null;
         }
         (function loop() {
           if (topbar.progress("+.1") >= 1) {
