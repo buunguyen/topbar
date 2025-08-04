@@ -63,38 +63,30 @@
       ctx.shadowBlur = options.shadowBlur;
       ctx.shadowColor = options.shadowColor;
 
-      // First draw the full-width bar with a base gradient
-      var baseGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-      for (var stop in options.barColors)
-        baseGradient.addColorStop(stop, options.barColors[stop]);
+      // Create a smooth flowing gradient that shifts the colors
+      var gradientWidth = canvas.width * 2.0; // Much wider for smoother flow
+      var gradient = ctx.createLinearGradient(
+        indefiniteOffset, 
+        0, 
+        indefiniteOffset + gradientWidth, 
+        0
+      );
+      
+      // Create a more visible flowing effect with better color distribution
+      gradient.addColorStop(0, options.barColors["0"]);
+      gradient.addColorStop(0.15, options.barColors[".25"]);
+      gradient.addColorStop(0.3, options.barColors[".50"]);
+      gradient.addColorStop(0.45, options.barColors[".75"]);
+      gradient.addColorStop(0.6, options.barColors["1.0"]);
+      gradient.addColorStop(0.75, options.barColors["0"]);
+      gradient.addColorStop(0.9, options.barColors[".25"]);
+      gradient.addColorStop(1, options.barColors["0"]); // Loop back to start
       
       ctx.lineWidth = options.barThickness;
       ctx.beginPath();
       ctx.moveTo(0, options.barThickness / 2);
       ctx.lineTo(canvas.width, options.barThickness / 2);
-      ctx.strokeStyle = baseGradient;
-      ctx.stroke();
-      
-      // Then overlay a moving highlight gradient
-      var highlightWidth = canvas.width * 0.3;
-      var movingGradient = ctx.createLinearGradient(
-        indefiniteOffset - highlightWidth, 
-        0, 
-        indefiniteOffset + highlightWidth, 
-        0
-      );
-      
-      // Create a bright moving highlight
-      movingGradient.addColorStop(0, "rgba(255, 255, 255, 0)");
-      movingGradient.addColorStop(0.3, "rgba(255, 255, 255, 0.4)");
-      movingGradient.addColorStop(0.5, "rgba(255, 255, 255, 0.6)");
-      movingGradient.addColorStop(0.7, "rgba(255, 255, 255, 0.4)");
-      movingGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
-      
-      ctx.beginPath();
-      ctx.moveTo(0, options.barThickness / 2);
-      ctx.lineTo(canvas.width, options.barThickness / 2);
-      ctx.strokeStyle = movingGradient;
+      ctx.strokeStyle = gradient;
       ctx.stroke();
     },
     createCanvas = function () {
@@ -140,9 +132,9 @@
             indefiniteOffset = 0;
             (function loop() {
               indefiniteTimerId = window.requestAnimationFrame(loop);
-              indefiniteOffset += 4; // Speed of highlight movement
-              if (indefiniteOffset > canvas.width + canvas.width * 0.3) {
-                indefiniteOffset = -canvas.width * 0.3;
+              indefiniteOffset += 12; // Faster, smoother movement
+              if (indefiniteOffset > canvas.width * 0.5) {
+                indefiniteOffset = -canvas.width * 1.5;
               }
               repaintIndefinite();
             })();
