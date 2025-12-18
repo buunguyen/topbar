@@ -55,6 +55,7 @@
     },
     createCanvas = function () {
       canvas = document.createElement("canvas");
+      canvas.role = "presentation";
       var style = canvas.style;
       style.position = "fixed";
       style.top = style.left = style.right = style.margin = style.padding = 0;
