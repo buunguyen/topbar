@@ -3,7 +3,7 @@ export interface BarColors {
 }
 
 export interface TopbarConfigOptions {
-  autoRun?: null | 'stagger' | 'indefinite'
+  indeterminate?: null | false | 'grow' | 'roll'
   barThickness?: number
   barColors?: BarColors
   shadowBlur?: number

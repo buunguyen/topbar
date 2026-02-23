@@ -15,13 +15,30 @@
     delayTimerId = null,
     indefiniteTimerId = null,
     indefiniteOffset = 0,
+    interpolateColor = function(color1, color2, ratio) {
+      // Parse rgba colors and interpolate between them
+      var rgba1 = color1.match(/rgba?\(([^)]+)\)/);
+      var rgba2 = color2.match(/rgba?\(([^)]+)\)/);
+      
+      if (!rgba1 || !rgba2) return color1;
+      
+      var values1 = rgba1[1].split(',').map(function(x) { return parseFloat(x.trim()); });
+      var values2 = rgba2[1].split(',').map(function(x) { return parseFloat(x.trim()); });
+      
+      var r = Math.round(values1[0] + (values2[0] - values1[0]) * ratio);
+      var g = Math.round(values1[1] + (values2[1] - values1[1]) * ratio);
+      var b = Math.round(values1[2] + (values2[2] - values1[2]) * ratio);
+      var a = values1[3] + (values2[3] - values1[3]) * ratio;
+      
+      return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a.toFixed(2) + ')';
+    },
     addEvent = function (elem, type, handler) {
       if (elem.addEventListener) elem.addEventListener(type, handler, false);
       else if (elem.attachEvent) elem.attachEvent("on" + type, handler);
       else elem["on" + type] = handler;
     },
     options = {
-      autoRun: null,
+      indeterminate: 'grow',
       barThickness: 3,
       barColors: {
         0: "rgba(26,  188, 156, .9)",
@@ -34,7 +51,7 @@
       shadowColor: "rgba(0,   0,   0,   .6)",
       className: null,
     },
-    repaint = function () {
+    repaintGrowing = function () {
       canvas.width = window.innerWidth;
       canvas.height = options.barThickness * 5; // need space for shadow
 
@@ -55,7 +72,7 @@
       ctx.strokeStyle = lineGradient;
       ctx.stroke();
     },
-    repaintIndefinite = function () {
+    repaintRolling = function () {
       canvas.width = window.innerWidth;
       canvas.height = options.barThickness * 5; // need space for shadow
 
@@ -63,8 +80,8 @@
       ctx.shadowBlur = options.shadowBlur;
       ctx.shadowColor = options.shadowColor;
 
-      // Create a smooth flowing gradient that shifts the colors
-      var gradientWidth = canvas.width * 2.0; // Much wider for smoother flow
+      // Create a moving gradient that flows smoothly
+      var gradientWidth = canvas.width * 2.5;
       var gradient = ctx.createLinearGradient(
         indefiniteOffset, 
         0, 
@@ -72,15 +89,30 @@
         0
       );
       
-      // Create a more visible flowing effect with better color distribution
-      gradient.addColorStop(0, options.barColors["0"]);
-      gradient.addColorStop(0.15, options.barColors[".25"]);
-      gradient.addColorStop(0.3, options.barColors[".50"]);
-      gradient.addColorStop(0.45, options.barColors[".75"]);
-      gradient.addColorStop(0.6, options.barColors["1.0"]);
-      gradient.addColorStop(0.75, options.barColors["0"]);
-      gradient.addColorStop(0.9, options.barColors[".25"]);
-      gradient.addColorStop(1, options.barColors["0"]); // Loop back to start
+      // Use user colors in a flowing pattern
+      var colorKeys = Object.keys(options.barColors).sort(function(a, b) {
+        return parseFloat(a) - parseFloat(b);
+      });
+      
+      if (colorKeys.length > 0) {
+        // Create a repeating pattern of user colors
+        for (var cycle = 0; cycle < 3; cycle++) {
+          for (var i = 0; i < colorKeys.length; i++) {
+            var stop = colorKeys[i];
+            var position = (cycle * colorKeys.length + i) / (3 * colorKeys.length - 1);
+            gradient.addColorStop(position, options.barColors[stop]);
+          }
+        }
+        // Add the first color again to complete the loop
+        gradient.addColorStop(1, options.barColors[colorKeys[0]]);
+      } else {
+        // Fallback colors
+        gradient.addColorStop(0, "rgba(26, 188, 156, 0.9)");
+        gradient.addColorStop(0.25, "rgba(52, 152, 219, 0.9)");
+        gradient.addColorStop(0.5, "rgba(241, 196, 15, 0.9)");
+        gradient.addColorStop(0.75, "rgba(230, 126, 34, 0.9)");
+        gradient.addColorStop(1, "rgba(26, 188, 156, 0.9)");
+      }
       
       ctx.lineWidth = options.barThickness;
       ctx.beginPath();
@@ -97,7 +129,13 @@
       style.zIndex = 100001;
       canvas.hidden = true;
       if (options.className) canvas.classList.add(options.className);
-      addEvent(window, "resize", repaint);
+      addEvent(window, "resize", function() {
+        if (options.indeterminate === 'roll') {
+          repaintRolling();
+        } else {
+          repaintGrowing();
+        }
+      });
     },
     topbar = {
       config: function (opts) {
@@ -118,25 +156,26 @@
           canvas.hidden = false;
           topbar.progress(0);
           
-          if (options.autoRun === 'stagger') {
-            // Stagger mode: progress that slows down and never reaches full width
+          if (options.indeterminate === 'grow') {
+            // Grow mode: progress that slows down and never reaches full width
             (function loop() {
               progressTimerId = window.requestAnimationFrame(loop);
               topbar.progress(
                 "+" + 0.05 * Math.pow(1 - Math.sqrt(currentProgress), 2)
               );
             })();
-          } else if (options.autoRun === 'indefinite') {
-            // Indefinite mode: full bar with moving gradient
+          } else if (options.indeterminate === 'roll') {
+            // Roll mode: full bar with moving gradient
             currentProgress = 1; // Set to full width
             indefiniteOffset = 0;
+            repaintRolling(); // Initial paint
             (function loop() {
               indefiniteTimerId = window.requestAnimationFrame(loop);
-              indefiniteOffset += 12; // Faster, smoother movement
+              indefiniteOffset += 10; // Smooth, obvious movement
               if (indefiniteOffset > canvas.width * 0.5) {
-                indefiniteOffset = -canvas.width * 1.5;
+                indefiniteOffset = -canvas.width * 2.0;
               }
-              repaintIndefinite();
+              repaintRolling();
             })();
           }
         }
@@ -150,7 +189,11 @@
               : 0) + parseFloat(to);
         }
         currentProgress = to > 1 ? 1 : to;
-        repaint();
+        if (options.indeterminate === 'roll') {
+          repaintRolling();
+        } else {
+          repaintGrowing();
+        }
         return currentProgress;
       },
       hide: function () {

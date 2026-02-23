@@ -20,7 +20,7 @@
           prettyPrint()
           function resetToDefaults() {
             topbar.config({
-              autoRun      : 'stagger',
+              indeterminate : 'grow',
               barThickness : 3,
               barColors    : {
                 '0'      : 'rgba(26,  188, 156, .9)',
@@ -65,7 +65,7 @@
           $('#btnStartAdvanced').click(function() {
             resetToDefaults()
             topbar.config({
-              autoRun      : null, 
+              indeterminate : null, 
               barThickness : 5,
               barColors    : {
                   '0'      : 'rgba(26,  188, 156, .7)',
@@ -90,7 +90,7 @@
           $('#btnStartIndefinite').click(function() {
             resetToDefaults()
             topbar.config({
-              autoRun: 'indefinite',
+              indeterminate: 'roll',
               barThickness: 4
             })
             topbar.show()
@@ -166,11 +166,11 @@ $('#btnStopDelayed').click(function() {
           <section class="code">
             <p>Use <code>topbar.config(options)</code> to customize <em>topbar</em>.</p>
             <ul>
-              <li><code>autoRun</code> (default: <code>null</code>): 
+              <li><code>indeterminate</code> (default: <code>'grow'</code>): 
                 <ul>
-                  <li><code>null</code>: no automatic progress (manual control only)</li>
-                  <li><code>'stagger'</code>: automatic progress that slows down over time (original behavior)</li>
-                  <li><code>'indefinite'</code>: full bar with moving highlight animation for unknown completion time (indeterminate progress)</li>
+                  <li><code>null</code> or <code>false</code>: no automatic progress (manual control only)</li>
+                  <li><code>'grow'</code>: automatic progress that slows down over time (original behavior)</li>
+                  <li><code>'roll'</code>: full bar with moving gradient animation for unknown completion time</li>
                 </ul>
               </li>
               <li><code>barThickness</code> (default: <code>3</code>): the progress bar thickness.</li>
@@ -209,15 +209,15 @@ $('#btnStopAdvanced').click(function() {
 })</pre>
           </section>
 
-          <h4>Indefinite Mode</h4>
+          <h4>Roll Mode</h4>
           <section class="code">
-            <p>Use <code>autoRun: 'indefinite'</code> for tasks with unknown completion time. This shows a full progress bar with a moving highlight animation, perfect for indeterminate progress indicators.</p>
-            <a id="btnStartIndefinite" class="button" href="javascript:void(0)">Show Indefinite Progress</a>
+            <p>Use <code>indeterminate: 'roll'</code> for tasks with unknown completion time. This shows a full progress bar with a moving gradient animation, perfect for indeterminate progress indicators.</p>
+            <a id="btnStartIndefinite" class="button" href="javascript:void(0)">Show Roll Progress</a>
             <a id="btnStopIndefinite" class="button" href="javascript:void(0)">Hide Progress</a>
             <pre class="prettyprint">
 $('#btnStartIndefinite').click(function() {
   topbar.config({
-    autoRun: 'indefinite',
+    indeterminate: 'roll',
     barThickness: 4
   })
   topbar.show()
